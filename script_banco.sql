@@ -28,25 +28,6 @@ CREATE TABLE `contato` (
 );
 
 --
--- Table structure for table `itens_pedido`
---
-
-DROP TABLE IF EXISTS `itens_pedido`;
-
-CREATE TABLE `itens_pedido` (
-  `iditens_pedido` int NOT NULL AUTO_INCREMENT,
-  `idPedido` int NOT NULL,
-  `idProduto` int NOT NULL,
-  `quantidade` int NOT NULL,
-  PRIMARY KEY (`iditens_pedido`),
-  UNIQUE KEY `iditens_pedido_UNIQUE` (`iditens_pedido`),
-  KEY `fk_itens_pedido_Pedido1_idx` (`idPedido`),
-  KEY `fk_itens_pedido_Produto1_idx` (`idProduto`),
-  CONSTRAINT `fk_itens_pedido_Pedido1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`),
-  CONSTRAINT `fk_itens_pedido_Produto1` FOREIGN KEY (`idProduto`) REFERENCES `produto` (`idProduto`)
-);
-
---
 -- Table structure for table `pedido`
 --
 
@@ -93,6 +74,25 @@ CREATE TABLE `produto` (
 );
 
 --
+-- Table structure for table `itens_pedido`
+--
+
+DROP TABLE IF EXISTS `itens_pedido`;
+
+CREATE TABLE `itens_pedido` (
+  `iditens_pedido` int NOT NULL AUTO_INCREMENT,
+  `idPedido` int NOT NULL,
+  `idProduto` int NOT NULL,
+  `quantidade` int NOT NULL,
+  PRIMARY KEY (`iditens_pedido`),
+  UNIQUE KEY `iditens_pedido_UNIQUE` (`iditens_pedido`),
+  KEY `fk_itens_pedido_Pedido1_idx` (`idPedido`),
+  KEY `fk_itens_pedido_Produto1_idx` (`idProduto`),
+  CONSTRAINT `fk_itens_pedido_Pedido1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`),
+  CONSTRAINT `fk_itens_pedido_Produto1` FOREIGN KEY (`idProduto`) REFERENCES `produto` (`idProduto`)
+);
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -124,4 +124,6 @@ CREATE TABLE `mensagens` (
   PRIMARY KEY (`id_msg`)
 );
 
-INSERT INTO `usuarios` VALUES (26,768021978,'admin','admin@gmail.com','81dc9bdb52d04dc20036dbd8313ed055','1657193785admin.png','Administrador','Ativo');
+INSERT INTO usuarios (id_unico, nome, email, senha, img, tipo, status)
+            VALUES   (768021978, 'Admin', 'admin@gmail.com', '1234', '1657193785admin.png', 
+                            'Administrador', 'Ativo');
